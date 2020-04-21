@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.domain.Auditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -46,9 +48,8 @@ public class EventLog {
     @Size(max = 250)
     private String origin;
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(name = "created_at", updatable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDate createdAt;
 
     @Column
@@ -63,4 +64,15 @@ public class EventLog {
     @JoinColumn
     private User user;
 
+    public EventLog(@NotNull @Size(max = 250) String description,
+                    @NotNull @Size(max = 500) String log,
+                    @NotNull @Size(max = 250) String origin,
+                    @Min(0) Integer amount,
+                    ELevel level) {
+        this.description = description;
+        this.log = log;
+        this.origin = origin;
+        this.amount = amount;
+        this.level = level;
+    }
 }

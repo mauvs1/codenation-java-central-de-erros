@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -21,26 +22,26 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventLogDTO {
-    @Column
-    @NotNull
-    @Size(max = 250)
+
+    @NotNull(message = "Não pode ser nulo")
+    @NotEmpty(message = "Deve conter um valor")
+    @Size(min = 3, max = 250)
     private String description;
 
-    @Column
-    @NotNull
-    @Size(max = 500)
+    @NotNull(message = "Não pode ser nulo")
+    @NotEmpty(message = "Deve conter um valor")
+    @Size(min = 3, max = 500)
     private String log;
 
-    @Column
-    @NotNull
-    @Size(max = 250)
+    @NotNull(message = "Não pode ser nulo")
+    @NotEmpty(message = "Deve conter um valor")
+    @Size(min = 3, max = 250)
     private String origin;
 
-    @Column
-    @Min(0)
-    private Integer amount = 0;
+    @Min(value = 1, message = "Deve ser maior ou igual a 1")
+    private Integer amount = 1;
 
-    @Column
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Deve conter um valor")
     private ELevel level = ELevel.INFO;
 }
