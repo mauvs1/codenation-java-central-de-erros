@@ -68,11 +68,13 @@ public class EventLog {
                     @NotNull @Size(max = 500) String log,
                     @NotNull @Size(max = 250) String origin,
                     @Min(0) Integer amount,
-                    ELevel level) {
+                    ELevel level,
+                    User user) {
         this.description = description;
         this.log = log;
         this.origin = origin;
         this.amount = amount;
         this.level = level;
+        this.user = user;
     }
 }

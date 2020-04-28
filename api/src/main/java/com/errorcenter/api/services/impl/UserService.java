@@ -1,5 +1,6 @@
 package com.errorcenter.api.services.impl;
 
+import com.errorcenter.api.Exceptions.UserAlreadyExistsException;
 import com.errorcenter.api.dto.UserRegisterDTO;
 import com.errorcenter.api.models.User;
 import com.errorcenter.api.repositories.UserRepository;
@@ -35,6 +36,10 @@ public class UserService implements UserServiceInterface, UserDetailsService {
 
     @Override
     public UserRegisterDTO save(UserRegisterDTO dto) {
+        UserDetails userDetails = this.loadUserByUsername(dto.getEmail());
+        if (userDetails != null) {
+            throw new UserAlreadyExistsException();
+        }
         User user = userRepository.save(new User(dto.getUserName(), dto.getEmail(), dto.getPassword()));
         return new UserRegisterDTO(user.getName(), user.getPassword(), user.getEmail());
     }

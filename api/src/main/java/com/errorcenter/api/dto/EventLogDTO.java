@@ -1,6 +1,7 @@
 package com.errorcenter.api.dto;
 
 import com.errorcenter.api.enums.ELevel;
+import com.errorcenter.api.models.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,4 +45,6 @@ public class EventLogDTO {
     @Enumerated(EnumType.STRING)
     @NotNull(message = "Deve conter um valor")
     private ELevel level = ELevel.INFO;
+
+    private User user;
 }
