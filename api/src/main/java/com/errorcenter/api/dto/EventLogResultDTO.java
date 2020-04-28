@@ -1,4 +1,4 @@
 package com.errorcenter.api.dto;
 
-public class UserCreatedDTO {
+public class EventLogResultDTO {
 }
