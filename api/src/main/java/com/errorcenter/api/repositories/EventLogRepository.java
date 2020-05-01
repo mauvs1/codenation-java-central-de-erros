@@ -1,5 +1,6 @@
 package com.errorcenter.api.repositories;
 
+import com.errorcenter.api.dto.EventLogFindDTO;
 import com.errorcenter.api.dto.EventLogResultDTO;
 import com.errorcenter.api.models.EventLog;
 import org.springframework.data.domain.Page;
@@ -15,7 +16,7 @@ import java.util.Optional;
 @Repository
 public interface EventLogRepository extends JpaRepository<EventLog, Long> {
 
-    Optional<EventLog> findByIdAndUserId(long id, long userId);
+    Optional<EventLogFindDTO> findByIdAndUserId(long id, long userId);
 
     @Query(value = "SELECT id, description, level, amount, origin, created_at FROM event_log el" +
             " WHERE el.user_id IS NOT NULL" +

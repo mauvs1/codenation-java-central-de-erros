@@ -1,6 +1,7 @@
 package com.errorcenter.api.services.impl;
 
 import com.errorcenter.api.dto.EventLogDTO;
+import com.errorcenter.api.dto.EventLogFindDTO;
 import com.errorcenter.api.dto.EventLogResultDTO;
 import com.errorcenter.api.enums.ELevel;
 import com.errorcenter.api.models.EventLog;
@@ -26,7 +27,7 @@ public class EventLogService implements EventLogServiceInterface {
     private EventLogRepository eventLogRepository;
 
     @Override
-    public Optional<EventLog> findByIdAndUserId(long id, long userId) {
+    public Optional<EventLogFindDTO> findByIdAndUserId(long id, long userId) {
         return eventLogRepository.findByIdAndUserId(id, userId);
     }
 
